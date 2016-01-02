@@ -20,12 +20,12 @@ if [ ! -d /var/www/pimcore ]; then
   mysql -u root -e "GRANT ALL PRIVILEGES ON pimcore_dev.* TO 'pimcore_dev'@'%';"
   
   # setup database 
-  mysql -u pimcore_demo -ppimcore_dev_password -e "CREATE DATABASE pimcore_dev charset=utf8;"; 
-  mysql -u pimcore_demo -ppimcore_dev_password pimcore_dev < /var/www/pimcore/modules/install/mysql/install.sql
+  mysql -u pimcore_dev -ppimcore_dev_password -e "CREATE DATABASE pimcore_dev charset=utf8;"; 
+  mysql -u pimcore_dev -ppimcore_dev_password pimcore_dev < /var/www/pimcore/modules/install/mysql/install.sql
   
   # 'admin' password is 'Dev_password123' 
-  mysql -u pimcore_demo -ppimcore_dev_password -D pimcore_dev -e "UPDATE users SET password = '$2y$10$pmKv/oVgnclHMUfLAp4kbOlYTTfKgsaU77hdcfQN2RaypbP.RaO8q' WHERE name = 'admin'"  
-  mysql -u pimcore_demo -ppimcore_dev_password -D pimcore_dev -e "UPDATE users SET id = '0' WHERE name = 'system'"
+  mysql -u pimcore_dev -ppimcore_dev_password -D pimcore_dev -e "UPDATE users SET password = '$2y$10$pmKv/oVgnclHMUfLAp4kbOlYTTfKgsaU77hdcfQN2RaypbP.RaO8q' WHERE name = 'admin'"  
+  mysql -u pimcore_dev -ppimcore_dev_password -D pimcore_dev -e "UPDATE users SET id = '0' WHERE name = 'system'"
   
   sudo -u www-data mv /tmp/system.xml /var/www/website/var/config/system.xml
   sudo -u www-data cp /tmp/cache.xml /var/www/website/var/config/cache.xml
