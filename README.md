@@ -1,9 +1,9 @@
-# Docker demo container for pimcore
+# Pimcore Docker container for development
 
 This is a development ready version of the latest nightly pimcore build, as a docker image
 It fulfills all system requirements as well as all best practices (such as caching, ...) - minus office-libre
 
-Intructions below show how this image canbe mounted with docker, so devs can work locally.
+##Instructions show how the container can be mounted as a local volume
 
 ## Building locally 
 Run the following commands, replace the //path/to/your/dev/workspace with the folder path to where you're coding from
