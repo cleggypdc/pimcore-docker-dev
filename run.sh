@@ -16,19 +16,21 @@ if [ ! -d /var/www/pimcore ]; then
   rm /tmp/pimcore.zip 
   
   # create demo mysql user
+  mysql -u root -e "CREATE DATABASE pimcore_dev charset=utf8;"
   mysql -u root -e "CREATE USER 'pimcore_dev'@'%' IDENTIFIED BY 'pimcore_dev_password';"
   mysql -u root -e "GRANT ALL PRIVILEGES ON pimcore_dev.* TO 'pimcore_dev'@'%';"
   
-  # setup database 
-  mysql -u pimcore_dev -ppimcore_dev_password -e "CREATE DATABASE pimcore_dev charset=utf8;"; 
-  mysql -u pimcore_dev -ppimcore_dev_password pimcore_dev < /var/www/pimcore/modules/install/mysql/install.sql
-  
-  # 'admin' password is 'Dev_password123' 
-  mysql -u pimcore_dev -ppimcore_dev_password -D pimcore_dev -e "UPDATE users SET password = '$2y$10$.H5kUv/F77XUbLrRWkwMhOjHmPN6tdrfi53wF2BMoyNnm/cZ9ItXe' WHERE name = 'admin'"  
-  mysql -u pimcore_dev -ppimcore_dev_password -D pimcore_dev -e "UPDATE users SET id = '0' WHERE name = 'system'"
-  
   sudo -u www-data cp /tmp/system.xml /var/www/website/var/config/system.xml
   sudo -u www-data cp /tmp/cache.xml /var/www/website/var/config/cache.xml
+  
+  ##wait a few seconds to ensure files are copied
+  sleep 5
+  
+  ##run the php cli installer and delete
+  sudo -u www-data cp /tmp/cli-install.php /var/www/pimcore/cli/cli-install.php
+  sudo php /var/www/pimcore/cli/cli-install.php
+  sudo rm /var/www/pimcore/cli/cli-install.php
+  
 fi
 
 # stop temp. mysql service
