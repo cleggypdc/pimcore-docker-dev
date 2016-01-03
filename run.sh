@@ -24,10 +24,10 @@ if [ ! -d /var/www/pimcore ]; then
   mysql -u pimcore_dev -ppimcore_dev_password pimcore_dev < /var/www/pimcore/modules/install/mysql/install.sql
   
   # 'admin' password is 'Dev_password123' 
-  mysql -u pimcore_dev -ppimcore_dev_password -D pimcore_dev -e "UPDATE users SET password = '$2y$10$pmKv/oVgnclHMUfLAp4kbOlYTTfKgsaU77hdcfQN2RaypbP.RaO8q' WHERE name = 'admin'"  
+  mysql -u pimcore_dev -ppimcore_dev_password -D pimcore_dev -e "UPDATE users SET password = '$2y$10$.H5kUv/F77XUbLrRWkwMhOjHmPN6tdrfi53wF2BMoyNnm/cZ9ItXe' WHERE name = 'admin'"  
   mysql -u pimcore_dev -ppimcore_dev_password -D pimcore_dev -e "UPDATE users SET id = '0' WHERE name = 'system'"
   
-  sudo -u www-data mv /tmp/system.xml /var/www/website/var/config/system.xml
+  sudo -u www-data cp /tmp/system.xml /var/www/website/var/config/system.xml
   sudo -u www-data cp /tmp/cache.xml /var/www/website/var/config/cache.xml
 fi
 

@@ -15,14 +15,14 @@
         <contactemail/>
         <loginscreencustomimage/>
         <disableusagestatistics/>
-        <debug></debug>
+        <debug>1</debug>
         <debug_ip/>
         <http_auth>
             <username/>
             <password/>
         </http_auth>
         <custom_php_logfile>1</custom_php_logfile>
-        <debugloglevel>error</debugloglevel>
+        <debugloglevel>debug</debugloglevel>
         <debug_admin_translations/>
         <devmode/>
         <logrecipient/>
